@@ -11,7 +11,7 @@ function Banner() {
       </h1>
        <p className="text-xl">
          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus id quis ipsa consequatur perspiciatis at,
-         maxime in repudiandae voluptatem saepe tempore. Molestias laborum rerum, odio error animi distinctio culpa cumque!
+         maxime in repudiandae voluptatem saepe tempore. Molestias laborum rerum, odio error animi distinctio culpa cumque
        </p>
   <label className="input input-bordered flex items-center gap-2">
    <svg

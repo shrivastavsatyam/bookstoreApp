@@ -1,14 +1,26 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
-import List from "../../public/List.json";
 import Cards from "./Cards";
+import axios from "axios";
+import List from "../../public/list.json";
 
 function Freebook() {
-    const filterData=List.filter((data)=> data.category==="Free");
+
+    const [books, setBooks] = useState([]);
+    const [filteredBooks, setFilteredBooks] = useState([]); 
+  // fetch data from backend
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const res = await axios.get("http://localhost:4001/book");
+      console.log(res.data);
+      setBooks(res.data.data);   // real DB data
+    };
+
+    fetchBooks();
+  }, []);
+  const filterData=books?.filter((data)=> data.category==="Free");
 
    var settings = {
     dots: true,
@@ -54,14 +66,14 @@ function Freebook() {
         </h1>   
          <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus non, autem, enim id doloremque incidunt,
-            quasi asperiores quisquam tempora fuga Placeat aliquid nulla itaque! In itaque laboriosam repellat! Quod?
+            quasi asperiores quisquam tempora fuga Placeat aliquid nulla itaque! In itaque laboriosam repellat! Quod? !
          </p>
        </div> 
   
     <div>
       <Slider {...settings}>
         {filterData.map((item)=> (
-            <Cards item={item} key={item.id}/>
+            <Cards item={item} key={item._id}/>
         )) }
       </Slider>
 
